@@ -20,4 +20,9 @@ export class AppComponent {
     {id: 2, title: 'Some title 2', completed: true, date: new Date()},
     {id: 3, title: 'Some title 3', completed: false, date: new Date()},
   ]
+
+  onToggle(id: number) {
+    const idx = this.todos.findIndex(t => t.id === id)
+    this.todos[idx].completed = !this.todos[idx].completed
+  }
 }
