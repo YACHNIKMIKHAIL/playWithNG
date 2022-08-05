@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {TodosService} from "./shared/todos.service";
 
 
 @Component({
@@ -9,4 +10,6 @@ import {Component} from '@angular/core';
 export class AppComponent {
   appTitle = 'it is my game with NG';
 
+  constructor(public todosService: TodosService) {
+  }
 }

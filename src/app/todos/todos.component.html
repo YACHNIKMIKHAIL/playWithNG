@@ -6,7 +6,7 @@
       {{t.title}}
       </span>
     <small>{{t.date |  date:'medium'}}</small>
-    <button class="rm" (click)="todosService.remove(t.id)">&times;</button>
+    <button class="rm" (click)="todosService.removeTodo(t.id)">&times;</button>
   </li>
 
 </ul>

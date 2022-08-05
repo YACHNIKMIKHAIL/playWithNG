@@ -15,13 +15,26 @@ export class TodosService {
     {id: 2, title: 'Some title 2', completed: true, date: new Date()},
     {id: 3, title: 'Some title 3', completed: false, date: new Date()},
   ]
+  private newTitle: string = ''
 
   onToggle(id: number) {
     const idx = this.todos.findIndex(t => t.id === id)
     this.todos[idx].completed = !this.todos[idx].completed
   }
 
-  remove(id: number) {
+  removeTodo(id: number) {
     this.todos = this.todos.filter(t => t.id !== id)
+  }
+
+  newTodoTitle(v: any) {
+    console.log('newTodoTitle', v.target.value)
+    this.newTitle = v.target.value
+  }
+
+  addTodo() {
+    if (this.newTitle.trim().length === 0) return
+    this.todos.push({
+      id: this.todos.length + 1, title: this.newTitle, completed: false, date: new Date()
+    })
   }
 }
