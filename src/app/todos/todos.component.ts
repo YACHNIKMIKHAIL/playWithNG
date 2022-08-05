@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TodosService} from "../shared/todos.service";
 import {delay} from "rxjs";
+import {SearchService} from "../shared/search.service";
 
 @Component({
   selector: 'app-todos',
@@ -9,10 +10,11 @@ import {delay} from "rxjs";
 })
 export class TodosComponent implements OnInit {
   public loading: boolean = true
-  public search: string = ''
-  public isDone: boolean = false
 
-  constructor(public todosService: TodosService) {
+  // public search: { string: string, isDone: boolean } = {string: "", isDone: false}
+
+  constructor(public todosService: TodosService,
+              public searchService: SearchService) {
   }
 
   ngOnInit(): void {

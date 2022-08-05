@@ -7,13 +7,15 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {AddTodoFormComponent} from "./add-todo-form/add-todo-form.component";
 import {TodosFilterPipe} from "./shared/todos.filter.pipe";
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodosComponent,
     AddTodoFormComponent,
-    TodosFilterPipe
+    TodosFilterPipe,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

@@ -5,10 +5,12 @@ import {ITodo} from "./todos.service";
   name: 'todosFilter'
 })
 export class TodosFilterPipe implements PipeTransform {
-  transform(todos: ITodo[], search: string): ITodo[] {
-    if (!search.trim()) return todos
-    // console.log('TodosFilterPipe', isDone)
-    return todos.filter(todo => todo.title.toLowerCase().indexOf(search.toLowerCase()) !== -1)
+  transform(todos: ITodo[], search: { string: string, isDone: boolean }): ITodo[] {
+    if (!search.string.trim() && !search.isDone) return todos
+    return !search.isDone
+      ? todos.filter(todo => todo.title.toLowerCase().indexOf(search.string.toLowerCase()) !== -1)
+      : todos.filter(todo => todo.title.toLowerCase().indexOf(search.string.toLowerCase()) !== -1)
+        .filter(f => f.completed)
 
   }
 

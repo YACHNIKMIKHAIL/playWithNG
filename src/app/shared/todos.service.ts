@@ -17,7 +17,7 @@ export class TodosService {
 
   public todos: ITodo[] = []
   public newTitle: string = ''
-  public startCount: number = 2
+  public startCount: number = 5
   public todosCount: number = this.startCount
 
   fetchTodos(): Observable<ITodo[]> {

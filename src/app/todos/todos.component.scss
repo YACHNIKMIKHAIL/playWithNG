@@ -66,3 +66,16 @@ ul {
     padding: .5rem;
   }
 }
+
+.showButton {
+  $color: #eee;
+  flex-basis: 20%;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  background: $color;
+  transition: .3s all;
+  cursor: pointer;
+  color: #ff1f1a;
+}
