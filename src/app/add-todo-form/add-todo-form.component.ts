@@ -16,7 +16,10 @@ export class AddTodoFormComponent implements OnInit {
   }
 
   addTodo() {
-    if (this.title.trim().length === 0) return
+    if (this.title.trim().length === 0) {
+      alert('Enter title !')
+      return
+    }
     const newTodo: ITodo = {
       id: Date.now(), title: this.title, completed: false, date: new Date()
     }
