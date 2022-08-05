@@ -1,6 +1,6 @@
 <div *ngIf="!loading">
   <ul *ngIf="todosService.todos.length; else noTodos">
-    <li *ngFor="let t of todosService.todos ; let i=index">
+    <li *ngFor="let t of todosService.todos; let i=index">
     <span [class.done]="t.completed">
       <input type="checkbox" [checked]="t.completed" (change)="onChange(t.id)">
     <strong>{{i + 1}}</strong>

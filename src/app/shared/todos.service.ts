@@ -22,18 +22,24 @@ export class TodosService {
   public todosCount: number = this.startCount
 
   fetchTodos(): Observable<ITodo[]> {
-    return this.http.get<ITodo[]>(`https://jsonplaceholder.typicode.com/todos?count`)
+    console.log('fetchTodos', this.todosCount)
+    return this.http.get<ITodo[]>(`https://jsonplaceholder.typicode.com/todos?_limit=${this.todosCount}`)
       .pipe(
         tap(todos => {
-          this.todos = todos.filter((f, i) => i < this.todosCount)
-          this.todosBeforeShow = todos
+          debugger
+          this.todos = todos
+          // this.todosBeforeShow = todos
         })
       )
   }
 
   changeTodosCount() {
     this.todosCount = this.todosCount + this.startCount
-    this.todos = this.todosBeforeShow.filter((f, i) => i < this.todosCount)
+    console.log('changeTodosCount', this.todosCount)
+    this.fetchTodos().subscribe(() => {
+
+    })
+    // this.todos = this.todosBeforeShow.filter((f, i) => i < this.todosCount)
   }
 
   onToggle(id: number) {
@@ -42,6 +48,7 @@ export class TodosService {
   }
 
   removeTodo(id: number) {
+    if (this.todos.length === 1) this.todosCount = 0
     this.todos = this.todos.filter(t => t.id !== id)
   }
 
