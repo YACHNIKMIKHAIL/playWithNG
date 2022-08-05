@@ -1,4 +1,6 @@
 import {Injectable} from "@angular/core";
+import {HttpClient} from "@angular/common/http";
+import {Observable, tap} from "rxjs";
 
 export interface ITodo {
   id: number
@@ -10,12 +12,18 @@ export interface ITodo {
 @Injectable({providedIn: 'root'})
 export class TodosService {
 
-  public todos: ITodo[] = [
-    {id: 1, title: 'Some title 1', completed: false, date: new Date()},
-    {id: 2, title: 'Some title 2', completed: true, date: new Date()},
-    {id: 3, title: 'Some title 3', completed: false, date: new Date()},
-  ]
-  private newTitle: string = ''
+  constructor(private http: HttpClient) {
+  }
+
+  public todos: ITodo[] = []
+  public newTitle: string = ''
+
+  fetchTodos(): Observable<ITodo[]> {
+    return this.http.get<ITodo[]>('https://jsonplaceholder.typicode.com/todos')
+      .pipe(
+        tap(todos => console.log(todos))
+      )
+  }
 
   onToggle(id: number) {
     const idx = this.todos.findIndex(t => t.id === id)
@@ -26,9 +34,8 @@ export class TodosService {
     this.todos = this.todos.filter(t => t.id !== id)
   }
 
-  newTodoTitle(v: any) {
-    console.log('newTodoTitle', v.target.value)
-    this.newTitle = v.target.value
+  newTodoTitle(v: Event) {
+    this.newTitle = (v.target as HTMLInputElement).value
   }
 
   addTodo() {
@@ -36,5 +43,6 @@ export class TodosService {
     this.todos.push({
       id: this.todos.length + 1, title: this.newTitle, completed: false, date: new Date()
     })
+    this.newTitle = ''
   }
 }

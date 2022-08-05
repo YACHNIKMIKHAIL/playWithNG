@@ -1,12 +1,18 @@
-<ul>
-  <li *ngFor="let t of todosService.todos; let i=index">
+<div *ngIf="!loading">
+  <ul *ngIf="todosService.todos.length; else noTodos">
+    <li *ngFor="let t of todosService.todos ; let i=index">
     <span [class.done]="t.completed">
       <input type="checkbox" [checked]="t.completed" (change)="onChange(t.id)">
     <strong>{{i + 1}}</strong>
       {{t.title}}
       </span>
-    <small>{{t.date |  date:'medium'}}</small>
-    <button class="rm" (click)="todosService.removeTodo(t.id)">&times;</button>
-  </li>
+      <small>{{t.date |  date:'medium'}}</small>
+      <button class="rm" (click)="todosService.removeTodo(t.id)">&times;</button>
+    </li>
+  </ul>
 
-</ul>
+  <ng-template #noTodos>
+    <p style="text-align: center"> No todos now, bro =)</p>
+  </ng-template>
+</div>
+<p *ngIf="loading">L o a d i n g . . . </p>

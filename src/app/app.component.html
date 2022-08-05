@@ -1,7 +1,9 @@
 <div class="container">
   <h1>{{appTitle}}</h1>
   <span>
-    <input type="text" (change)="todosService.newTodoTitle($event)">
+    <input type="text" (change)="todosService.newTodoTitle($event)" (keyup.enter)="todosService.addTodo()"
+           [value]="todosService.newTitle"
+           placeholder="todo title please">
     <button class="rm" (click)="todosService.addTodo()">+</button>
   </span>
   <app-todos></app-todos>
