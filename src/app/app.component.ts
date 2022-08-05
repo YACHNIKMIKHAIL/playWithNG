@@ -8,7 +8,7 @@ import {TodosService} from "./shared/todos.service";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  appTitle = 'it is my game with NG';
+  appTitle = 'It is my game with NG';
 
   constructor(public todosService: TodosService) {
   }

@@ -7,6 +7,7 @@ export interface ITodo {
   title: string
   completed: boolean
   date?: any
+  userId?: number
 }
 
 @Injectable({providedIn: 'root'})
@@ -17,7 +18,7 @@ export class TodosService {
 
   public todos: ITodo[] = []
   public newTitle: string = ''
-  public startCount: number = 5
+  public startCount: number = 2
   public todosCount: number = this.startCount
 
   fetchTodos(): Observable<ITodo[]> {
@@ -49,7 +50,7 @@ export class TodosService {
     this.newTitle = (v.target as HTMLInputElement).value
   }
 
-  addTodo(todo:ITodo) {
+  addTodo(todo: ITodo) {
     this.todos.push(todo)
   }
 }

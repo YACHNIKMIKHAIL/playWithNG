@@ -2,8 +2,8 @@
 
   <app-search></app-search>
   <ul *ngIf="todosService.todos.length; else noTodos">
-    <li
-      *ngFor="let t of todosService.todos | todosFilter:{string:searchService.search.string,isDone:searchService.search.isDone} ; let i=index">
+    <li [class.backCo]="t.userId && t.userId % 2 === 0"
+        *ngFor="let t of todosService.todos | todosFilter:{string:searchService.search.string,isDone:searchService.search.isDone} ; let i=index">
     <span [class.done]="t.completed">
       <input type="checkbox" [checked]="t.completed" (change)="onChange(t.id)">
     <strong>{{i + 1}}</strong>
