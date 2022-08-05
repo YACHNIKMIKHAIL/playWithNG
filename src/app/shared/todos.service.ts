@@ -15,14 +15,25 @@ export class TodosService {
   constructor(private http: HttpClient) {
   }
 
+  public todosBeforeShow: ITodo[] = []
   public todos: ITodo[] = []
   public newTitle: string = ''
+  public startCount: number = 2
+  public todosCount: number = this.startCount
 
   fetchTodos(): Observable<ITodo[]> {
-    return this.http.get<ITodo[]>('https://jsonplaceholder.typicode.com/todos')
+    return this.http.get<ITodo[]>(`https://jsonplaceholder.typicode.com/todos?count`)
       .pipe(
-        tap(todos => console.log(todos))
+        tap(todos => {
+          this.todos = todos.filter((f, i) => i < this.todosCount)
+          this.todosBeforeShow = todos
+        })
       )
+  }
+
+  changeTodosCount() {
+    this.todosCount = this.todosCount + this.startCount
+    this.todos = this.todosBeforeShow.filter((f, i) => i < this.todosCount)
   }
 
   onToggle(id: number) {

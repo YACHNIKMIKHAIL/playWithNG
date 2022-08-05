@@ -10,6 +10,7 @@
       <button class="rm" (click)="todosService.removeTodo(t.id)">&times;</button>
     </li>
   </ul>
+  <button (click)="todosService.changeTodosCount()">Show more {{todosService.startCount}}</button>
 
   <ng-template #noTodos>
     <p style="text-align: center"> No todos now, bro =)</p>
